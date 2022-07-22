@@ -22,7 +22,7 @@ module.exports = {
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to play something!**"
+        "❌ | **Join a Voice Channel!**"
       );
     if (
       message.guild.me.voice.channel &&
@@ -30,7 +30,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in the same voice channel as me to use this command!**"
+        ":x: | **You must be in the same voice channel as me to use this command!**"
       );
     let SearchString = args.join(" ");
     if (!SearchString)
@@ -39,7 +39,7 @@ module.exports = {
         `**Usage - **\`${GuildDB.prefix}play [song]\``
       );
     let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
-    let Searching = await message.channel.send(":mag_right: Searching...");
+    let Searching = await message.channel.send(":infinity: Finding...");
     if (!CheckNode || !CheckNode.connected) {
       return client.sendTime(
         message.channel,
@@ -234,7 +234,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          "❌ | **You must be in the same voice channel as me to use this command!**"
+          ":x: | **You must be in the same voice channel as me to use this command!**"
         );
       let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {
@@ -352,7 +352,7 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendError(
               interaction,
-              `❌ | **There was an error while searching**`
+              `:x: | **There was an error while searching**`
             );
           }
         } catch (err) {
@@ -398,7 +398,7 @@ module.exports = {
               );
             return interaction.send(SongAddedEmbed);
 
-          case "PLAYLIST_LOADED":
+           case "PLAYLIST_LOADED":
             player.queue.add(res.tracks);
             await player.play();
             let SongAdded = new MessageEmbed();
